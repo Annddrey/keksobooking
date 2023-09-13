@@ -95,8 +95,6 @@ function generatorLocationObject() {
   };
 }
 
-const location = generatorLocationObject();
-
 // Object geniration - offer
 function randOfferTitle() {
   return titleOffer[getRandomPositiveInteger(0, 7)];
@@ -136,7 +134,7 @@ function getPhotos() {
   return photos[getRandomPositiveInteger(0, photos.length - 1)];
 }
 
-function generatorOfferObject() {
+function generatorOfferObject(location) {
   return {
     title: randOfferTitle(),
     address: location.lat.toString() + ", " + location.lng.toString(),
@@ -155,9 +153,10 @@ function generatorOfferObject() {
 // Array of objects
 
 const genirationTotalObject = () => {
+  const location = generatorLocationObject();
   return {
     author: genirationAvater(),
-    offer: generatorOfferObject(),
+    offer: generatorOfferObject(location),
     location: location,
   };
 };
