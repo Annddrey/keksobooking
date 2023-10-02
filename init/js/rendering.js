@@ -4,29 +4,32 @@ const cardTemplate = document
   .querySelector("#card")
   .content.querySelector("article");
 
-const ArrayOfObjects = Array.from({ length: 10 }, genirationTotalObject);
+const COUNT_OBJECT = 10;
 
-const popup = cardTemplate.cloneNode(true);
+const arrayOfObjects = Array.from(
+  { length: COUNT_OBJECT },
+  genirationTotalObject
+);
 
-function createPopupAvatar(objectIndex) {
+function createPopupAvatar(objectIndex, popup) {
   popup.querySelector(".popup__avatar").src =
-    ArrayOfObjects[objectIndex].author.avatar;
+    arrayOfObjects[objectIndex].author.avatar;
 }
 
-function createPopupTitle(objectIndex) {
+function createPopupTitle(objectIndex, popup) {
   popup.querySelector(".popup__title").textContent =
-    ArrayOfObjects[objectIndex].offer.title;
+    arrayOfObjects[objectIndex].offer.title;
 }
 
-function createPopupAddress(objectIndex) {
+function createPopupAddress(objectIndex, popup) {
   popup.querySelector(".popup__text--address").textContent =
-    ArrayOfObjects[objectIndex].offer.address;
+    arrayOfObjects[objectIndex].offer.address;
 }
 
-function createPopupPrice(objectIndex) {
+function createPopupPrice(objectIndex, popup) {
   popup
     .querySelector(".popup__text--price")
-    .insertAdjacentHTML("afterbegin", ArrayOfObjects[objectIndex].offer.price);
+    .insertAdjacentHTML("afterbegin", arrayOfObjects[objectIndex].offer.price);
 }
 
 const type = {
@@ -37,28 +40,28 @@ const type = {
   hotel: "Отель",
 };
 
-function createPopupType(objectIndex) {
+function createPopupType(objectIndex, popup) {
   popup.querySelector(".popup__type").textContent =
-    type[ArrayOfObjects[objectIndex].offer.type];
+    type[arrayOfObjects[objectIndex].offer.type];
 }
 
-function createPopupСapacity(objectIndex) {
+function createPopupСapacity(objectIndex, popup) {
   popup.querySelector(
     ".popup__text--capacity"
-  ).textContent = `${ArrayOfObjects[objectIndex].offer.rooms} комнаты комнаты для ${ArrayOfObjects[objectIndex].offer.guests} гостей`;
+  ).textContent = `${arrayOfObjects[objectIndex].offer.rooms} комнаты комнаты для ${arrayOfObjects[objectIndex].offer.guests} гостей`;
 }
 
-function createPopupTime(objectIndex) {
+function createPopupTime(objectIndex, popup) {
   popup.querySelector(
     ".popup__text--time"
-  ).textContent = `Заезд после ${ArrayOfObjects[objectIndex].offer.checkin}, выезд до ${ArrayOfObjects[objectIndex].offer.checkout}`;
+  ).textContent = `Заезд после ${arrayOfObjects[objectIndex].offer.checkin}, выезд до ${arrayOfObjects[objectIndex].offer.checkout}`;
 }
 
-function createPopupFeatures(objectIndex) {
+function createPopupFeatures(objectIndex, popup) {
   const features = popup.querySelectorAll(".popup__feature");
 
   features.forEach((featureElement) => {
-    const isNeed = ArrayOfObjects[objectIndex].offer.features.some((element) =>
+    const isNeed = arrayOfObjects[objectIndex].offer.features.some((element) =>
       featureElement.classList.contains(`popup__feature--${element}`)
     );
 
@@ -68,30 +71,38 @@ function createPopupFeatures(objectIndex) {
   });
 }
 
-function createPopupDescription(objectIndex) {
+function createPopupDescription(objectIndex, popup) {
   popup.querySelector(".popup__description").textContent =
-    ArrayOfObjects[objectIndex].offer.description;
+    arrayOfObjects[objectIndex].offer.description;
 }
 
-function createPopupPhotos(objectIndex) {
+function createPopupPhotos(objectIndex, popup) {
   popup.querySelector(".popup__photo").src =
-    ArrayOfObjects[objectIndex].offer.photos;
+    arrayOfObjects[objectIndex].offer.photos;
 }
 
 function renderPopup(objectIndex) {
-  createPopupAvatar(objectIndex);
-  createPopupTitle(objectIndex);
-  createPopupAddress(objectIndex);
-  createPopupPrice(objectIndex);
-  createPopupType(objectIndex);
-  createPopupСapacity(objectIndex);
-  createPopupTime(objectIndex);
-  createPopupFeatures(objectIndex);
-  createPopupDescription(objectIndex);
-  createPopupPhotos(objectIndex);
+  const popup = cardTemplate.cloneNode(true);
+  createPopupAvatar(objectIndex, popup);
+  createPopupTitle(objectIndex, popup);
+  createPopupAddress(objectIndex, popup);
+  createPopupPrice(objectIndex, popup);
+  createPopupType(objectIndex, popup);
+  createPopupСapacity(objectIndex, popup);
+  createPopupTime(objectIndex, popup);
+  createPopupFeatures(objectIndex, popup);
+  createPopupDescription(objectIndex, popup);
+  createPopupPhotos(objectIndex, popup);
+  return popup;
 }
 
-renderPopup(0);
-console.log(popup.children);
-let mapConvas = document.querySelector("#map-canvas");
-mapConvas.appendChild(popup);
+function getArrayPopup() {
+  const array = [];
+  for (let i = 0; i < arrayOfObjects.length; i++) {
+    renderPopup(i);
+    array.push(renderPopup(i));
+  }
+  return array;
+}
+
+export { getArrayPopup };
