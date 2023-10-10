@@ -1,55 +1,55 @@
-import { getRandomPositiveInteger, getRandomGeolocation } from "./util.js";
+import { getRandomPositiveInteger, getRandomGeolocation } from './util.js';
 
 const avatarAdres = [
-  "01",
-  "05",
-  "10",
-  "02",
-  "03",
-  "11",
-  "04",
-  "07",
-  "08",
-  "15",
+  '01',
+  '05',
+  '10',
+  '02',
+  '03',
+  '11',
+  '04',
+  '07',
+  '08',
+  '15',
 ];
 
 const titleOffer = [
-  "Уютные апартаменты",
-  "Минималистичный интерьер",
-  "Отдых на природе",
-  "Красивый вид из окна",
-  "Хорошая инфраструктура",
-  "Хит продаж",
-  "Лучший выбор",
-  "Семейный номер",
+  'Уютные апартаменты',
+  'Минималистичный интерьер',
+  'Отдых на природе',
+  'Красивый вид из окна',
+  'Хорошая инфраструктура',
+  'Хит продаж',
+  'Лучший выбор',
+  'Семейный номер',
 ];
 
-const chek = ["12:00", "13:00", "14:00"];
+const chek = ['12:00', '13:00', '14:00'];
 
-const type = ["palace", "float", "hotel", "bungalow", "house"];
+const type = ['palace', 'float', 'hotel', 'bungalow', 'house'];
 
 const featur = [
-  "wifi",
-  "dishwasher",
-  "parking",
-  "washer",
-  "elevator",
-  "conditioner",
+  'wifi',
+  'dishwasher',
+  'parking',
+  'washer',
+  'elevator',
+  'conditioner',
 ];
 
 const description = [
-  "Кстати, диаграммы связей лишь добавляют фракционных разногласий и в равной степени предоставлены сами себе.",
-  "Безусловно, перспективное планирование однозначно фиксирует необходимость стандартных подходов.",
-  "Безусловно, убеждённость некоторых оппонентов требует анализа соответствующих условий активизации",
-  "Как принято считать, многие известные личности своевременно верифицированы.",
-  "Являясь всего лишь частью общей картины, ключевые особенности структуры проекта могут быть призваны к ответу.",
-  "Являясь всего лишь частью общей картины, явные признаки победы институционализации будут призваны к ответу.",
+  'Кстати, диаграммы связей лишь добавляют фракционных разногласий и в равной степени предоставлены сами себе.',
+  'Безусловно, перспективное планирование однозначно фиксирует необходимость стандартных подходов.',
+  'Безусловно, убеждённость некоторых оппонентов требует анализа соответствующих условий активизации',
+  'Как принято считать, многие известные личности своевременно верифицированы.',
+  'Являясь всего лишь частью общей картины, ключевые особенности структуры проекта могут быть призваны к ответу.',
+  'Являясь всего лишь частью общей картины, явные признаки победы институционализации будут призваны к ответу.',
 ];
 
 const photos = [
-  "https://assets.htmlacademy.ru/content/intensive/javascript-1/keksobooking/duonguyen-8LrGtIxxa4w.jpg",
-  "https://assets.htmlacademy.ru/content/intensive/javascript-1/keksobooking/brandon-hoogenboom-SNxQGWxZQi0.jpg",
-  "https://assets.htmlacademy.ru/content/intensive/javascript-1/keksobooking/claire-rendall-b6kAwr1i0Iw.jpg",
+  'https://assets.htmlacademy.ru/content/intensive/javascript-1/keksobooking/duonguyen-8LrGtIxxa4w.jpg',
+  'https://assets.htmlacademy.ru/content/intensive/javascript-1/keksobooking/brandon-hoogenboom-SNxQGWxZQi0.jpg',
+  'https://assets.htmlacademy.ru/content/intensive/javascript-1/keksobooking/claire-rendall-b6kAwr1i0Iw.jpg',
 ];
 
 // Object geniration - author
@@ -86,6 +86,7 @@ function generatorType() {
 function getCountRooms() {
   return getRandomPositiveInteger(1, 4);
 }
+
 function getCountGuests() {
   return getRandomPositiveInteger(1, 5);
 }
