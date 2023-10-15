@@ -1,8 +1,8 @@
-import { genirationTotalObject } from "./data.js";
+import { genirationTotalObject } from './data.js';
 
 const cardTemplate = document
-  .querySelector("#card")
-  .content.querySelector("article");
+  .querySelector('#card')
+  .content.querySelector('article');
 
 const COUNT_OBJECT = 10;
 
@@ -12,53 +12,53 @@ const arrayOfObjects = Array.from(
 );
 
 function createPopupAvatar(objectIndex, popup) {
-  popup.querySelector(".popup__avatar").src =
+  popup.querySelector('.popup__avatar').src =
     arrayOfObjects[objectIndex].author.avatar;
 }
 
 function createPopupTitle(objectIndex, popup) {
-  popup.querySelector(".popup__title").textContent =
+  popup.querySelector('.popup__title').textContent =
     arrayOfObjects[objectIndex].offer.title;
 }
 
 function createPopupAddress(objectIndex, popup) {
-  popup.querySelector(".popup__text--address").textContent =
+  popup.querySelector('.popup__text--address').textContent =
     arrayOfObjects[objectIndex].offer.address;
 }
 
 function createPopupPrice(objectIndex, popup) {
   popup
-    .querySelector(".popup__text--price")
-    .insertAdjacentHTML("afterbegin", arrayOfObjects[objectIndex].offer.price);
+    .querySelector('.popup__text--price')
+    .insertAdjacentHTML('afterbegin', arrayOfObjects[objectIndex].offer.price);
 }
 
 const type = {
-  float: "Квартира",
-  bungalow: "Бунгало",
-  house: "Дом",
-  palace: "Дворец",
-  hotel: "Отель",
+  float: 'Квартира',
+  bungalow: 'Бунгало',
+  house: 'Дом',
+  palace: 'Дворец',
+  hotel: 'Отель',
 };
 
 function createPopupType(objectIndex, popup) {
-  popup.querySelector(".popup__type").textContent =
+  popup.querySelector('.popup__type').textContent =
     type[arrayOfObjects[objectIndex].offer.type];
 }
 
 function createPopupСapacity(objectIndex, popup) {
   popup.querySelector(
-    ".popup__text--capacity"
+    '.popup__text--capacity'
   ).textContent = `${arrayOfObjects[objectIndex].offer.rooms} комнаты комнаты для ${arrayOfObjects[objectIndex].offer.guests} гостей`;
 }
 
 function createPopupTime(objectIndex, popup) {
   popup.querySelector(
-    ".popup__text--time"
+    '.popup__text--time'
   ).textContent = `Заезд после ${arrayOfObjects[objectIndex].offer.checkin}, выезд до ${arrayOfObjects[objectIndex].offer.checkout}`;
 }
 
 function createPopupFeatures(objectIndex, popup) {
-  const features = popup.querySelectorAll(".popup__feature");
+  const features = popup.querySelectorAll('.popup__feature');
 
   features.forEach((featureElement) => {
     const isNeed = arrayOfObjects[objectIndex].offer.features.some((element) =>
@@ -72,12 +72,12 @@ function createPopupFeatures(objectIndex, popup) {
 }
 
 function createPopupDescription(objectIndex, popup) {
-  popup.querySelector(".popup__description").textContent =
+  popup.querySelector('.popup__description').textContent =
     arrayOfObjects[objectIndex].offer.description;
 }
 
 function createPopupPhotos(objectIndex, popup) {
-  popup.querySelector(".popup__photo").src =
+  popup.querySelector('.popup__photo').src =
     arrayOfObjects[objectIndex].offer.photos;
 }
 

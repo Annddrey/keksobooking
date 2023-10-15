@@ -107,7 +107,7 @@ adForm.addEventListener('submit', (evt) => {
   formPristine.validate();
 });
 
-// Validation timein and time out
+// Validation timein and timeout
 
 const Inputtimein = adForm.querySelector('#timein');
 const Inputtimeout = adForm.querySelector('#timeout');
