@@ -1,15 +1,15 @@
 import { genirationTotalObject } from './data.js';
 
-const cardTemplate = document
-  .querySelector('#card')
-  .content.querySelector('article');
-
 const COUNT_OBJECT = 10;
 
 const arrayOfObjects = Array.from(
   { length: COUNT_OBJECT },
   genirationTotalObject
 );
+
+const cardTemplate = document
+  .querySelector('#card')
+  .content.querySelector('article');
 
 function createPopupAvatar(objectIndex, popup) {
   popup.querySelector('.popup__avatar').src =
@@ -105,4 +105,6 @@ function getArrayPopup() {
   return array;
 }
 
-export { getArrayPopup };
+const arrayPopup = getArrayPopup();
+
+export {arrayPopup, arrayOfObjects };

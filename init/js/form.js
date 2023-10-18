@@ -51,7 +51,7 @@ function getMaxNumberGustes(value) {
 }
 
 function getErrorTextInputGustes() {
-  return `Максимальное кол-во гостей: ${inHouse[InputRums.value]}`;
+  return `Максимальное кол-во гостей ${inHouse[InputRums.value]}`;
 }
 
 formPristine.addValidator(inputGustes, getMaxNumberGustes, getErrorTextInputGustes);
@@ -120,4 +120,4 @@ Inputtimeout.addEventListener('change', () => {
   Inputtimein.value = Inputtimeout.value;
 });
 
-export { activeTogler };
+export { activeTogler, formPristine };
