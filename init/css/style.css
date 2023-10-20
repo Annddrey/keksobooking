@@ -429,6 +429,33 @@ fieldset {
   display: none;
 }
 
+.ad-form__element--invalid {
+  position: relative;
+}
+
+.ad-form__error {
+  position: absolute;
+  display: block;
+  width: max-content;
+  padding: 10px 10px;
+  font-size: 14px;
+  background-color: #25252570;
+  border-radius: 4px;
+  color: #ffffff;
+  z-index: 2;
+}
+
+.ad-form__error::before {
+  position: absolute;
+  content: "";
+  display: block;
+  top: -20px;
+  width: 0;
+  height: 0;
+  border: 10px solid #00000000;
+  border-bottom: 10px solid #25252570;
+}
+
 .features legend {
   padding-bottom: 5px;
 }
