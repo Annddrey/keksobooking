@@ -436,13 +436,13 @@ fieldset {
 .ad-form__error {
   position: absolute;
   display: block;
+  margin-top: 2px;
   width: max-content;
   padding: 10px 10px;
-  font-size: 14px;
-  background-color: #25252570;
+  font-size: 12px;
+  background-color: #252525bd;
   border-radius: 4px;
   color: #ffffff;
-  z-index: 2;
 }
 
 .ad-form__error::before {
@@ -453,7 +453,7 @@ fieldset {
   width: 0;
   height: 0;
   border: 10px solid #00000000;
-  border-bottom: 10px solid #25252570;
+  border-bottom: 10px solid #252525bd;
 }
 
 .features legend {
