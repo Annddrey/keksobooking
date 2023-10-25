@@ -72,8 +72,16 @@ function createPopupDescription(objects, objectIndex, popup) {
 }
 
 function createPopupPhotos(objects, objectIndex, popup) {
-  popup.querySelector('.popup__photo').src =
-  objects[objectIndex].offer.photos;
+  const popupPhotos = popup.querySelector('.popup__photos');
+  objects[objectIndex].offer.photos.forEach((element) => {
+    const photo = document.createElement('img');
+    photo.classList.add('popup__photo');
+    photo.setAttribute('width', '45');
+    photo.setAttribute('height', '40');
+    photo.setAttribute('alt', 'Фотография жилья');
+    photo.setAttribute('src', element);
+    popupPhotos.append(photo);
+  });
 }
 
 function renderPopup(objects, objectIndex) {
@@ -87,7 +95,12 @@ function renderPopup(objects, objectIndex) {
   createPopupTime(objects, objectIndex, popup);
   createPopupFeatures(objects, objectIndex, popup);
   createPopupDescription(objects, objectIndex, popup);
-  createPopupPhotos(objects, objectIndex, popup);
+
+  popup.querySelector('.popup__photo').remove();
+  if (objects[objectIndex].offer.photos) {
+    createPopupPhotos(objects, objectIndex, popup);
+  }
+
   return popup;
 }
 
