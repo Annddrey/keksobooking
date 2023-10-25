@@ -440,7 +440,7 @@ fieldset {
   width: max-content;
   padding: 10px 10px;
   font-size: 12px;
-  background-color: #252525bd;
+  background-color: #f56b6bbd;
   border-radius: 4px;
   color: #ffffff;
 }
@@ -453,7 +453,7 @@ fieldset {
   width: 0;
   height: 0;
   border: 10px solid #00000000;
-  border-bottom: 10px solid #252525bd;
+  border-bottom: 10px solid #f56b6bbd;
 }
 
 .features legend {
