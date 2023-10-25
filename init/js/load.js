@@ -1,5 +1,5 @@
 function loadingSimilarAds(onSuccess, onError) {
-  fetch('https://25.javascript.pges.academy/keksobooking/data')
+  fetch('https://25.javascript.pages.academy/keksobooking/data')
     .then((response) => {
       if (response.ok){
         return response.json();
