@@ -1,11 +1,13 @@
-import { arrayPopup, arrayOfObjects } from './rendering.js';
 import { activeTogler } from './form.js';
+import './load.js';
 
-const EventLoadMap = function() {
+activeTogler();
+
+const onMapLoad = function() {
   activeTogler();
 };
 
-const map = L.map('map-canvas').on('load', EventLoadMap).setView({
+const map = L.map('map-canvas').on('load', onMapLoad).setView({
   lat: 35.68045,
   lng: 139.76897
 }, 13);
@@ -44,28 +46,33 @@ mainMarker.on('moveend', (evt) => {
 
 // Similar ads
 
-const markerIcon = L.icon({
-  iconUrl: '../img/pin.svg',
-  iconSize: [40, 40],
-  iconAnchor: [20, 40]
-});
 
-function createMarkerPoint(object, index) {
-  const {lat, lng} = object.location;
+function createSimilarAds(arrayPopup, similarAds) {
+  const markerIcon = L.icon({
+    iconUrl: '../img/pin.svg',
+    iconSize: [40, 40],
+    iconAnchor: [20, 40]
+  });
 
-  const marker = L.marker(
-    {
-      lat: lat,
-      lng: lng
-    },
-    {
-      icon:markerIcon
-    }
-  );
+  function createMarkerPoint(object, index) {
+    const {lat, lng} = object.location;
 
-  marker.addTo(map).bindPopup(arrayPopup[index]);
+    const marker = L.marker(
+      {
+        lat: lat,
+        lng: lng
+      },
+      {
+        icon:markerIcon
+      }
+    );
+
+    marker.addTo(map).bindPopup(arrayPopup[index]);
+  }
+
+  similarAds.forEach((object, index) => {
+    createMarkerPoint(object, index);
+  });
 }
 
-arrayOfObjects.forEach((object, index) => {
-  createMarkerPoint(object, index);
-});
+export {createSimilarAds};

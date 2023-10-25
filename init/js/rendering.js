@@ -1,35 +1,28 @@
-import { genirationTotalObject } from './data.js';
-
-const COUNT_OBJECT = 10;
-
-const arrayOfObjects = Array.from(
-  { length: COUNT_OBJECT },
-  genirationTotalObject
-);
+import { createSimilarAds } from './map.js';
 
 const cardTemplate = document
   .querySelector('#card')
   .content.querySelector('article');
 
-function createPopupAvatar(objectIndex, popup) {
+function createPopupAvatar(objects, objectIndex, popup) {
   popup.querySelector('.popup__avatar').src =
-    arrayOfObjects[objectIndex].author.avatar;
+  objects[objectIndex].author.avatar;
 }
 
-function createPopupTitle(objectIndex, popup) {
+function createPopupTitle(objects, objectIndex, popup) {
   popup.querySelector('.popup__title').textContent =
-    arrayOfObjects[objectIndex].offer.title;
+  objects[objectIndex].offer.title;
 }
 
-function createPopupAddress(objectIndex, popup) {
+function createPopupAddress(objects, objectIndex, popup) {
   popup.querySelector('.popup__text--address').textContent =
-    arrayOfObjects[objectIndex].offer.address;
+  objects[objectIndex].offer.address;
 }
 
-function createPopupPrice(objectIndex, popup) {
+function createPopupPrice(objects, objectIndex, popup) {
   popup
     .querySelector('.popup__text--price')
-    .insertAdjacentHTML('afterbegin', arrayOfObjects[objectIndex].offer.price);
+    .insertAdjacentHTML('afterbegin', objects[objectIndex].offer.price);
 }
 
 const type = {
@@ -40,71 +33,72 @@ const type = {
   hotel: 'Отель',
 };
 
-function createPopupType(objectIndex, popup) {
+function createPopupType(objects, objectIndex, popup) {
   popup.querySelector('.popup__type').textContent =
-    type[arrayOfObjects[objectIndex].offer.type];
+    type[objects[objectIndex].offer.type];
 }
 
-function createPopupСapacity(objectIndex, popup) {
+function createPopupСapacity(objects, objectIndex, popup) {
   popup.querySelector(
     '.popup__text--capacity'
-  ).textContent = `${arrayOfObjects[objectIndex].offer.rooms} комнаты комнаты для ${arrayOfObjects[objectIndex].offer.guests} гостей`;
+  ).textContent = `${objects[objectIndex].offer.rooms} комнаты комнаты для ${objects[objectIndex].offer.guests} гостей`;
 }
 
-function createPopupTime(objectIndex, popup) {
+function createPopupTime(objects, objectIndex, popup) {
   popup.querySelector(
     '.popup__text--time'
-  ).textContent = `Заезд после ${arrayOfObjects[objectIndex].offer.checkin}, выезд до ${arrayOfObjects[objectIndex].offer.checkout}`;
+  ).textContent = `Заезд после ${objects[objectIndex].offer.checkin}, выезд до ${objects[objectIndex].offer.checkout}`;
 }
 
-function createPopupFeatures(objectIndex, popup) {
-  const features = popup.querySelectorAll('.popup__feature');
+function createPopupFeatures(objects, objectIndex, popup) {
+  if (objects[objectIndex].offer.features) {
+    const features = popup.querySelectorAll('.popup__feature');
 
-  features.forEach((featureElement) => {
-    const isNeed = arrayOfObjects[objectIndex].offer.features.some((element) =>
-      featureElement.classList.contains(`popup__feature--${element}`)
-    );
+    features.forEach((featureElement) => {
+      const isNeed = objects[objectIndex].offer.features.some((element) =>
+        featureElement.classList.contains(`popup__feature--${element}`)
+      );
 
-    if (!isNeed) {
-      featureElement.remove();
-    }
-  });
+      if (!isNeed) {
+        featureElement.remove();
+      }
+    });
+  }
 }
 
-function createPopupDescription(objectIndex, popup) {
+function createPopupDescription(objects, objectIndex, popup) {
   popup.querySelector('.popup__description').textContent =
-    arrayOfObjects[objectIndex].offer.description;
+  objects[objectIndex].offer.description;
 }
 
-function createPopupPhotos(objectIndex, popup) {
+function createPopupPhotos(objects, objectIndex, popup) {
   popup.querySelector('.popup__photo').src =
-    arrayOfObjects[objectIndex].offer.photos;
+  objects[objectIndex].offer.photos;
 }
 
-function renderPopup(objectIndex) {
+function renderPopup(objects, objectIndex) {
   const popup = cardTemplate.cloneNode(true);
-  createPopupAvatar(objectIndex, popup);
-  createPopupTitle(objectIndex, popup);
-  createPopupAddress(objectIndex, popup);
-  createPopupPrice(objectIndex, popup);
-  createPopupType(objectIndex, popup);
-  createPopupСapacity(objectIndex, popup);
-  createPopupTime(objectIndex, popup);
-  createPopupFeatures(objectIndex, popup);
-  createPopupDescription(objectIndex, popup);
-  createPopupPhotos(objectIndex, popup);
+  createPopupAvatar(objects, objectIndex, popup);
+  createPopupTitle(objects, objectIndex, popup);
+  createPopupAddress(objects, objectIndex, popup);
+  createPopupPrice(objects, objectIndex, popup);
+  createPopupType(objects, objectIndex, popup);
+  createPopupСapacity(objects, objectIndex, popup);
+  createPopupTime(objects, objectIndex, popup);
+  createPopupFeatures(objects, objectIndex, popup);
+  createPopupDescription(objects, objectIndex, popup);
+  createPopupPhotos(objects, objectIndex, popup);
   return popup;
 }
 
-function getArrayPopup() {
-  const array = [];
-  for (let i = 0; i < arrayOfObjects.length; i++) {
-    renderPopup(i);
-    array.push(renderPopup(i));
+function getArrayPopup(objects) {
+  const obj = objects.slice(0, 10);
+  const arrayPopup = [];
+  for (let i = 0; i < obj.length; i++) {
+    arrayPopup.push(renderPopup(obj, i));
   }
-  return array;
+
+  createSimilarAds(arrayPopup, obj);
 }
 
-const arrayPopup = getArrayPopup();
-
-export {arrayPopup, arrayOfObjects };
+export { getArrayPopup };

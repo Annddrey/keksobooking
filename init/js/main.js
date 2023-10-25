@@ -1,5 +1,6 @@
-import { activeTogler } from './form.js';
 import './priceSlider.js';
-import './map.js';
+import {getArrayPopup} from './rendering.js';
+import { loadingSimilarAds } from './load.js';
+import {showAlert} from './util.js';
 
-activeTogler();
+loadingSimilarAds(getArrayPopup, showAlert);

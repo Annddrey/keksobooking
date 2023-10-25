@@ -1,6 +1,6 @@
 function getRandomPositiveInteger(a, b = 1) {
   if (a === undefined) {
-    throw new Error("Первый параметр должен быть число");
+    throw new Error('Первый параметр должен быть число');
   }
 
   // Math.ceil округляет до большего целого
@@ -28,4 +28,28 @@ function getRandomGeolocation(from, to, afterTheDot) {
   return randomValue.toFixed(afterTheDot);
 }
 
-export { getRandomPositiveInteger, getRandomGeolocation };
+function showAlert(text) {
+  const alert = document.createElement('div');
+  alert.style.zIndex = 100;
+  alert.style.backgroundColor = '#f56b6bbd';
+  alert.style.color = '#ffffff';
+  alert.style.position = 'absolute';
+  alert.style.padding = '10px';
+  alert.style.top = 0;
+  alert.style.left = '20%';
+  alert.style.right = '20%';
+  alert.style.margin = '0 auto';
+  alert.style.fontSize = '24px';
+  alert.style.textAlign = 'center';
+  alert.style.borderBottomLeftRadius = '6px';
+  alert.style.borderBottomRightRadius = '6px';
+  alert.textContent = text;
+
+  document.body.appendChild(alert);
+
+  setTimeout(() => {
+    alert.remove();
+  }, 5000);
+}
+
+export { getRandomPositiveInteger, getRandomGeolocation, showAlert };
