@@ -1,4 +1,4 @@
-function loadingSimilarAds(onSuccess, onError) {
+function getData(onSuccess, onError) {
   fetch('https://25.javascript.pages.academy/keksobooking/data')
     .then((response) => {
       if (response.ok){
@@ -10,4 +10,22 @@ function loadingSimilarAds(onSuccess, onError) {
     .catch((error) => onError(error));
 }
 
-export {loadingSimilarAds};
+function sendData(onSuccess, onError, body) {
+  fetch('https://25.javascript.pages.academy/keksobooking',
+    {
+      method: 'POST',
+      body
+    })
+    .then((response) => {
+      if(response.ok) {
+        onSuccess();
+      } else {
+        onError('Не удалось отправить данные формы');
+      }
+    })
+    .catch(() => {
+      onError('Не удалось отправить данные формы. Попробуйте еще раз.');
+    });
+}
+
+export {getData, sendData};

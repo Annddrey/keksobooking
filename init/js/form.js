@@ -1,3 +1,6 @@
+import { sendData } from './load.js';
+import {showAlert} from './util.js';
+
 const adForm = document.querySelector('.ad-form');
 const mapFilters = document.querySelector('.map__filters');
 
@@ -47,7 +50,11 @@ const inHouse = {
 };
 
 function getMaxNumberGustes(value) {
-  return parseInt(value, 10) <= inHouse[InputRums.value];
+  if (InputRums.value !== '100') {
+    return parseInt(value, 10) <= inHouse[InputRums.value] && parseInt(value, 10) > 0;
+  } else {
+    return parseInt(value, 10) === 0;
+  }
 }
 
 function getErrorTextInputGustes() {
@@ -102,11 +109,6 @@ InputType.addEventListener('change', () => {
   formPristine.validate(InputPrice);
 });
 
-adForm.addEventListener('submit', (evt) => {
-  evt.preventDefault();
-  formPristine.validate();
-});
-
 // Validation timein and timeout
 
 const Inputtimein = adForm.querySelector('#timein');
@@ -120,4 +122,38 @@ Inputtimeout.addEventListener('change', () => {
   Inputtimein.value = Inputtimeout.value;
 });
 
-export { activeTogler, formPristine };
+function blockSubmitButton() {
+  const submitButton = adForm.querySelector('.ad-form__submit');
+  submitButton.disabled = true;
+  submitButton.textContent = 'Отправка...';
+}
+
+function onblockSubmitButton() {
+  const submitButton = adForm.querySelector('.ad-form__submit');
+  submitButton.disabled = false;
+  submitButton.textContent = 'Опубликовать';
+}
+
+function publishingAnAd() {
+  adForm.addEventListener('submit', (evt) => {
+    evt.preventDefault();
+
+    const isValid = formPristine.validate();
+    if(isValid) {
+      blockSubmitButton();
+
+      sendData(
+        () => {
+          evt.target.reset();
+          onblockSubmitButton();
+        },
+        () => {
+          onblockSubmitButton();
+          showAlert('Не удалось отправить данные формы. Попробуйте еще раз.');
+        },
+        new FormData(evt.target));
+    }
+  });
+}
+
+export { activeTogler, formPristine, publishingAnAd};

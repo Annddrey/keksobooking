@@ -104,7 +104,7 @@ function renderPopup(objects, objectIndex) {
   return popup;
 }
 
-function getArrayPopup(objects) {
+function setPopups(objects) {
   const obj = objects.slice(0, 10);
   const arrayPopup = [];
   for (let i = 0; i < obj.length; i++) {
@@ -114,4 +114,4 @@ function getArrayPopup(objects) {
   createSimilarAds(arrayPopup, obj);
 }
 
-export { getArrayPopup };
+export { setPopups };
