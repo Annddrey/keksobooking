@@ -187,6 +187,10 @@ const resetButton = document.querySelector('.ad-form__reset');
 function resetForm(evt) {
   evt.preventDefault();
 
+  if(document.querySelector('.leaflet-popup')) {
+    document.querySelector('.leaflet-popup').remove();
+  }
+
   adForm.reset();
   mapFilters.reset();
   mainMarker.setLatLng(DEFAULT_POSITION);
