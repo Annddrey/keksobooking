@@ -21,7 +21,9 @@ noUiSlider.create(priceSlider, {
 });
 
 priceField.addEventListener('input', () => {
-  priceSlider.noUiSlider.set(priceField.value);
+  if (priceField.value) {
+    priceSlider.noUiSlider.set(priceField.value);
+  }
 });
 
 priceSlider.noUiSlider.on('update', () => {
