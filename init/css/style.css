@@ -440,6 +440,7 @@ fieldset {
   width: max-content;
   padding: 10px 10px;
   font-size: 12px;
+  pointer-events: none;
   background-color: #f56b6bbd;
   border-radius: 4px;
   color: #ffffff;
@@ -452,6 +453,7 @@ fieldset {
   top: -20px;
   width: 0;
   height: 0;
+  pointer-events: none;
   border: 10px solid #00000000;
   border-bottom: 10px solid #f56b6bbd;
 }
