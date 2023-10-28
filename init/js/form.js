@@ -1,5 +1,5 @@
 import { sendData } from './load.js';
-import {showAlert} from './util.js';
+import { mainMarker, DEFAULT_POSITION } from './map.js';
 
 const adForm = document.querySelector('.ad-form');
 const mapFilters = document.querySelector('.map__filters');
@@ -122,6 +122,8 @@ Inputtimeout.addEventListener('change', () => {
   Inputtimein.value = Inputtimeout.value;
 });
 
+// Send form
+
 function blockSubmitButton() {
   const submitButton = adForm.querySelector('.ad-form__submit');
   submitButton.disabled = true;
@@ -134,6 +136,22 @@ function onblockSubmitButton() {
   submitButton.textContent = 'Опубликовать';
 }
 
+function resaulMessage(idTemplate) {
+  const successTemplate = document.querySelector(`#${idTemplate}`)
+    .content.querySelector(`.${  idTemplate}`);
+  const message = successTemplate.cloneNode(true);
+
+  document.body.append(message);
+
+  document.body.addEventListener('click', () => message.remove());
+
+  document.body.addEventListener('keydown', (evt) => {
+    if (evt.key === 'Escape') {
+      message.remove();
+    }
+  });
+}
+
 function publishingAnAd() {
   adForm.addEventListener('submit', (evt) => {
     evt.preventDefault();
@@ -144,16 +162,25 @@ function publishingAnAd() {
 
       sendData(
         () => {
+          if(document.querySelector('.leaflet-popup')) {
+            document.querySelector('.leaflet-popup').remove();
+          }
           evt.target.reset();
+          mapFilters.reset();
+          mainMarker.setLatLng(DEFAULT_POSITION);
           onblockSubmitButton();
+          resaulMessage('success');
         },
         () => {
           onblockSubmitButton();
-          showAlert('Не удалось отправить данные формы. Попробуйте еще раз.');
+          resaulMessage('error');
         },
         new FormData(evt.target));
     }
   });
 }
+
+// Reset form
+
 
 export { activeTogler, formPristine, publishingAnAd};

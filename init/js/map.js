@@ -1,5 +1,9 @@
 import { activeTogler } from './form.js';
-import './load.js';
+
+const DEFAULT_POSITION = {
+  lat: 35.68045,
+  lng: 139.76897
+};
 
 activeTogler();
 
@@ -7,10 +11,7 @@ const onMapLoad = function() {
   activeTogler();
 };
 
-const map = L.map('map-canvas').on('load', onMapLoad).setView({
-  lat: 35.68045,
-  lng: 139.76897
-}, 13);
+const map = L.map('map-canvas').on('load', onMapLoad).setView(DEFAULT_POSITION, 13);
 
 L.tileLayer(
   'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
@@ -25,14 +26,12 @@ const mainMarkerIcon = L.icon({
   iconAnchor: [26, 52]
 });
 
-const mainMarker = L.marker({
-  lat: 35.68045,
-  lng: 139.76897
-},
-{
-  draggable: true,
-  icon: mainMarkerIcon
-}
+const mainMarker = L.marker(
+  DEFAULT_POSITION,
+  {
+    draggable: true,
+    icon: mainMarkerIcon
+  }
 );
 
 mainMarker.addTo(map);
@@ -75,4 +74,4 @@ function createSimilarAds(arrayPopup, similarAds) {
   });
 }
 
-export {createSimilarAds};
+export {createSimilarAds, mainMarker, DEFAULT_POSITION};
