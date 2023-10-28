@@ -182,5 +182,16 @@ function publishingAnAd() {
 
 // Reset form
 
+const resetButton = document.querySelector('.ad-form__reset');
+
+function resetForm(evt) {
+  evt.preventDefault();
+
+  adForm.reset();
+  mapFilters.reset();
+  mainMarker.setLatLng(DEFAULT_POSITION);
+}
+
+resetButton.addEventListener('click', resetForm);
 
 export { activeTogler, formPristine, publishingAnAd};
