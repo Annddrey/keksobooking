@@ -20,7 +20,12 @@ noUiSlider.create(priceSlider, {
   }
 });
 
+priceField.addEventListener('input', () => {
+  priceSlider.noUiSlider.set(priceField.value);
+});
+
 priceSlider.noUiSlider.on('update', () => {
   priceField.value = priceSlider.noUiSlider.get();
   formPristine.validate(priceField);
 });
+
