@@ -1,4 +1,5 @@
 import { activeTogler } from './form.js';
+import { formPristine } from './form.js';
 
 const DEFAULT_POSITION = {
   lat: 35.68045,
@@ -41,6 +42,7 @@ const inputAdres = document.querySelector('#address');
 mainMarker.on('moveend', (evt) => {
   const {lat, lng} = evt.target.getLatLng();
   inputAdres.value = `${lat.toFixed(5)}, ${lng.toFixed(5)}`;
+  formPristine.validate(inputAdres);
 });
 
 // Similar ads

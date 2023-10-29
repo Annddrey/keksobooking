@@ -38,6 +38,10 @@ const formPristine = new Pristine(adForm, {
   errorTextClass: 'ad-form__error'
 });
 
+const inputAdres = document.querySelector('#address');
+
+inputAdres.addEventListener('focus', (evt) => formPristine.validate(evt.target));
+
 // Guest validation
 const inputGustes = adForm.querySelector('#capacity');
 const InputRums = adForm.querySelector('#room_number');
