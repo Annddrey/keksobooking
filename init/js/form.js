@@ -22,9 +22,8 @@ function addDisabled(form, selector, flag) {
   }
 }
 
-function activeTogler() {
-  blockDisabled(adForm);
-  blockDisabled(mapFilters);
+function activeTogler(...forms) {
+  forms.forEach((form) => blockDisabled(form));
 }
 
 // Validation
