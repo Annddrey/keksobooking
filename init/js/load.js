@@ -4,10 +4,11 @@ function getData(onSuccess, onError) {
       if (response.ok){
         return response.json();
       }
+
       throw new Error(`${response.status} ${response.statusText}`);
     })
     .then((data) => onSuccess(data))
-    .catch((error) => onError(error));
+    .catch(() => onError('Не получилось загрузить похожие объявления'));
 }
 
 function sendData(onSuccess, onError, body) {

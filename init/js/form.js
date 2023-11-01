@@ -1,5 +1,5 @@
 import { sendData } from './load.js';
-import { mainMarker, DEFAULT_POSITION } from './map.js';
+import { mainMarker, DEFAULT_POSITION, markerGroup } from './map.js';
 
 const adForm = document.querySelector('.ad-form');
 const mapFilters = document.querySelector('.map__filters');
@@ -187,7 +187,7 @@ function publishingAnAd() {
 
 const resetButton = document.querySelector('.ad-form__reset');
 
-function resetForm(evt) {
+function onClickReset(evt) {
   evt.preventDefault();
 
   if(document.querySelector('.leaflet-popup')) {
@@ -196,9 +196,17 @@ function resetForm(evt) {
 
   adForm.reset();
   mapFilters.reset();
+  markerGroup.clearLayers();
   mainMarker.setLatLng(DEFAULT_POSITION);
 }
 
-resetButton.addEventListener('click', resetForm);
+function resetForm(data, cb) {
+  resetButton.addEventListener('click', (evt) => {
+    onClickReset(evt);
+    cb(data);
+    activeTogler(mapFilters);
+  });
+}
+resetButton.addEventListener('click', onClickReset);
 
-export { activeTogler, formPristine, publishingAnAd};
+export { activeTogler, formPristine, publishingAnAd, resetForm};

@@ -1,4 +1,4 @@
-import { createSimilarAds } from './map.js';
+import { creatingLayer } from './map.js';
 
 const cardTemplate = document
   .querySelector('#card')
@@ -26,7 +26,7 @@ function createPopupPrice(objects, objectIndex, popup) {
 }
 
 const type = {
-  float: 'Квартира',
+  flat: 'Квартира',
   bungalow: 'Бунгало',
   house: 'Дом',
   palace: 'Дворец',
@@ -41,7 +41,7 @@ function createPopupType(objects, objectIndex, popup) {
 function createPopupСapacity(objects, objectIndex, popup) {
   popup.querySelector(
     '.popup__text--capacity'
-  ).textContent = `${objects[objectIndex].offer.rooms} комнаты комнаты для ${objects[objectIndex].offer.guests} гостей`;
+  ).textContent = `Кол-во комнат - ${objects[objectIndex].offer.rooms}; Кол-во гостей - ${objects[objectIndex].offer.guests}`;
 }
 
 function createPopupTime(objects, objectIndex, popup) {
@@ -51,9 +51,9 @@ function createPopupTime(objects, objectIndex, popup) {
 }
 
 function createPopupFeatures(objects, objectIndex, popup) {
-  if (objects[objectIndex].offer.features) {
-    const features = popup.querySelectorAll('.popup__feature');
+  const features = popup.querySelectorAll('.popup__feature');
 
+  if (objects[objectIndex].offer.features) {
     features.forEach((featureElement) => {
       const isNeed = objects[objectIndex].offer.features.some((element) =>
         featureElement.classList.contains(`popup__feature--${element}`)
@@ -63,6 +63,8 @@ function createPopupFeatures(objects, objectIndex, popup) {
         featureElement.remove();
       }
     });
+  } else {
+    popup.querySelector('.popup__features').remove();
   }
 }
 
@@ -104,14 +106,14 @@ function renderPopup(objects, objectIndex) {
   return popup;
 }
 
-function setPopups(objects) {
+function addToMapPoints(objects) {
   const obj = objects.slice(0, 10);
   const arrayPopup = [];
   for (let i = 0; i < obj.length; i++) {
     arrayPopup.push(renderPopup(obj, i));
   }
 
-  createSimilarAds(arrayPopup, obj);
+  creatingLayer(arrayPopup, obj);
 }
 
-export { setPopups };
+export { addToMapPoints };
