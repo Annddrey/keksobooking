@@ -22,19 +22,22 @@ fieldFile.addEventListener('change',() => {
 // Housing photos
 
 const fieldHousingPhotos = document.querySelector('#images');
-const photosContainer = document.querySelector('.ad-form__upload');
+const photosContainer = document.querySelector('.ad-form__photo-container');
 const photosTemplate = document.querySelector('.ad-form__photo');
 photosTemplate.append(document.createElement('img'));
 
 
 fieldHousingPhotos.addEventListener('change', () => {
   document.querySelector('.ad-form__photo').remove();
-  const file = fieldHousingPhotos.files[0];
 
-  if (isImage) {
-    const photo = photosTemplate.cloneNode(true);
-    photo.querySelector('img').setAttribute('src', URL.createObjectURL(file));
-    photosContainer.append(photo);
+  for (let i = 0; fieldHousingPhotos.files.length; i++) {
+    const file = fieldHousingPhotos.files[i];
+
+    if (isImage(file)) {
+      const photo = photosTemplate.cloneNode(true);
+      photo.querySelector('img').setAttribute('src', URL.createObjectURL(file));
+      photosContainer.append(photo);
+    }
   }
 });
 
