@@ -1,10 +1,11 @@
-import {addToMapPoints} from './rendering.js';
-import { getData } from './load.js';
-import {showAlert, debounce} from './util.js';
 import { publishingAnAd, activeTogler, resetForm } from './form.js';
+import {addToMapPoints} from './rendering.js';
+import {showAlert, debounce} from './util.js';
+import { adsFilter } from './adsFilter.js';
+import { getData } from './load.js';
 import './priceSlider.js';
-import './adFilter.js';
-import { adsFilter } from './adFilter.js';
+import './adsFilter.js';
+import './formFotos.js';
 
 getData(
   (data) => {
