@@ -5,7 +5,7 @@ import { adsFilter } from './adsFilter.js';
 import { getData } from './load.js';
 import './priceSlider.js';
 import './adsFilter.js';
-import './formFotos.js';
+import './formPhotos.js';
 
 getData(
   (data) => {
