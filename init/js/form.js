@@ -204,7 +204,6 @@ function resetForm(data, cb) {
   resetButton.addEventListener('click', (evt) => {
     onClickReset(evt);
     cb(data);
-    activeTogler(mapFilters);
   });
 }
 resetButton.addEventListener('click', onClickReset);
