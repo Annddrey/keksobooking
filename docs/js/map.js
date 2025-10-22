@@ -57,7 +57,7 @@ const markerIcon = L.icon({
 
 const markerGroup = L.layerGroup().addTo(map);
 
-function creatingLayer(arrayPopup, similarAds) {
+function createLayer(arrayPopup, similarAds) {
 
   function createMarkerPoint(object, index) {
     const {lat, lng} = object.location;
@@ -80,4 +80,4 @@ function creatingLayer(arrayPopup, similarAds) {
   });
 }
 
-export {creatingLayer, mainMarker, DEFAULT_POSITION, markerGroup};
+export {createLayer, mainMarker, DEFAULT_POSITION, markerGroup};

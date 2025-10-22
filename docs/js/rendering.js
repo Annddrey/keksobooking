@@ -1,4 +1,4 @@
-import { creatingLayer } from './map.js';
+import { createLayer } from './map.js';
 
 const CONFIG = {
   MAX_CARDS: 10,
@@ -253,7 +253,7 @@ function addToMapPoints(cards) {
     .map(renderPopup)
     .filter(popup => popup !== null);
 
-  creatingLayer(popups, validCards);
+  createLayer(popups, validCards);
 }
 
 export { addToMapPoints, isValidCard };
